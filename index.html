@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>where in the world</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script
+      defer
+      src="https://kit.fontawesome.com/b6c975b9d9.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <!-- Main Field -->
+    <header class="header">
+      <!-- Navbar -->
+      <nav class="nav">
+        <h1 class="nav__title">Where in the world?</h1>
+        <div class="nav__toggle">
+          <input type="checkbox" name="dark-mode" id="theme" />
+          <label for="theme">
+            <i class="far fa-moon"></i>
+            <p>Dark theme</p>
+          </label>
+        </div>
+      </nav>
+      <!-- ?Main Section -->
+      <section class="main">
+        <!-- ?Input to search field and dropdown -->
+        <div class="main__input">
+          <form class="input__form">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              name="country"
+              id="country"
+              class="input__text"
+              placeholder="Search for a country..."
+            />
+          </form>
+
+          <!-- ?regions dropdown -->
+          <div class="dropdown">
+            <!-- Name -->
+            <div class="dropdown__name">
+              <span class="dropdown__placeholder">Select a region</span>
+              <i class="fas fa-chevron-right"></i>
+            </div>
+            <!-- Menu -->
+            <div class="dropdown__menu">
+              <ul class="dropdown__links">
+                <li class="dropdown__item">
+                  <a href="#" class="dropdown__item--link" data-region="africa"
+                    >Africa</a
+                  >
+                </li>
+                <li class="dropdown__item">
+                  <a
+                    href="#"
+                    class="dropdown__item--link"
+                    data-region="americas"
+                    >Americas</a
+                  >
+                </li>
+                <li class="dropdown__item">
+                  <a href="#" class="dropdown__item--link" data-region="asia"
+                    >Asia</a
+                  >
+                </li>
+                <li class="dropdown__item">
+                  <a href="#" class="dropdown__item--link" data-region="europe"
+                    >Europe</a
+                  >
+                </li>
+                <li class="dropdown__item">
+                  <a href="#" class="dropdown__item--link" data-region="oceania"
+                    >Oceania</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="back hidden">
+            <i class="fas fa-long-arrow-alt-left"></i> Back
+          </div>
+        </div>
+
+        <!--? Country Details Page -->
+        <section class="details"></section>
+
+        <!--? Countries Grid section -->
+        <section class="countries">
+          <!-- ?Country Article -->
+          <!-- ?Error Block HTML -->
+          <!-- <h2 class="error__block">Something went wrong</h2> -->
+        </section>
+      </section>
+    </header>
+  </body>
+</html>
+
+<!-- 
+    <i class="fas fa-chevron-right"></i>
+
+    <i class="far fa-moon"></i>
+    <i class="far fa-sun"></i>
+ -->
+
+<!-- <article class="country">
+            <div class="country__img">
+              <img
+                src="./indian__flag.png"
+                alt="Country Flag"
+                class="country__img--flag"
+              />
+            </div>
+            <div class="country__desc">
+              <h3 class="country__name">India</h3>
+              <p class="country__population country__detail">
+                Population:
+                <span class="country__population--count">100M</span>
+              </p>
+              <p class="country__region country__detail">
+                Region:
+                <span class="country__region--name">Europe</span>
+              </p>
+              <p class="country__capital country__detail">
+                Capital:
+                <span class="country__capital--name">capital</span>
+              </p>
+            </div>
+          </article> -->
+
+<!-- <div class="details__flag">
+            <img
+              src="./indian__flag.png"
+              alt="Indian Flag"
+              class="details__flag--img"
+            />
+          </div>
+          
+          <div class="details__body">
+            
+            <h3 class="details__title">INDIA</h3>
+           
+            <div class="details__items">
+              
+              <div class="details__info">
+                <p>Native Name: <span class="details__param">Bharat</span></p>
+                <p>Population: <span class="details__param">1220M</span></p>
+                <p>Region: <span class="details__param">Asia</span></p>
+                <p>
+                  Sub Region: <span class="details__param">Western Asia</span>
+                </p>
+                <p>Capital: <span class="details__param">New Delhi</span></p>
+              </div>
+             
+              <div class="details__info">
+                <p>Top Level Domain: <span class="details__param">.in</span></p>
+                <p>
+                  Currencies: <span class="details__param">Indian Rupee</span>
+                </p>
+                <p>
+                  Languages: <span class="details__param">Hindi, English</span>
+                </p>
+              </div>
+            </div>
+           
+            <div class="details__borders">
+              <p>
+                Border Countries:
+                <span class="details__borders--item">Afganistan</span>
+                <span class="details__borders--item">Nepal</span>
+                <span class="details__borders--item">Sri Lanka</span>
+              </p>
+            </div>
+          </div>-->
