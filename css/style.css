@@ -42,6 +42,7 @@ body img {
 
 .nav__title {
   font-size: 1.3rem;
+  cursor: pointer;
 }
 
 .nav__toggle {

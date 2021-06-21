@@ -7,6 +7,8 @@ const detailsPage = document.querySelector(".details");
 const main = document.querySelector(".main");
 const backBtn = document.querySelector(".back");
 
+const navTitle = document.querySelector(".nav__title");
+
 // Render Country Article
 const renderCountryArticle = function (country) {
   const countryHTML = `<article class="country" data-code="${
@@ -231,4 +233,16 @@ countriesContainer.addEventListener("click", function (e) {
   countriesContainer.innerHTML = "";
   dropDown.classList.add("hidden");
   backBtn.classList.remove("hidden");
+});
+
+navTitle.addEventListener("click", function (e) {
+  countriesContainer.innerHTML = "";
+  detailsPage.innerHTML = "";
+
+  if (dropDown.classList.contains("hidden")) {
+    dropDown.classList.remove("hidden");
+    backBtn.classList.add("hidden");
+  }
+
+  homePage();
 });
