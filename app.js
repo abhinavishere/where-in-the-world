@@ -7,13 +7,11 @@ const detailsPage = document.querySelector(".details");
 const main = document.querySelector(".main");
 const backBtn = document.querySelector(".back");
 
-// https://restcountries.eu/rest/v2/region/{region} //? For region
-// https://restcountries.eu/rest/v2/alpha/{code} //? Code
-// https://restcountries.eu/rest/v2/name/{name} //?By Name
-
 // Render Country Article
 const renderCountryArticle = function (country) {
-  const countryHTML = `<article class="country">
+  const countryHTML = `<article class="country" data-code="${
+    country.alpha3Code
+  }">
     <div class="country__img">
         <img
         src="${country.flag}"
@@ -43,13 +41,8 @@ const renderCountryArticle = function (country) {
   countriesContainer.insertAdjacentHTML("beforeend", countryHTML);
 };
 
-// const getNeighbour = async function(country){
-//   c
-// }
-
 //? Render Countries Details Page
-const renderCountryDetails = function (country, neighbours) {
-  // const neighbourArray = ["IND", "US", "GB"];
+const renderCountryDetails = function (country) {
   const countryHTML = `
   <div class="details__flag">
     <img
@@ -127,16 +120,15 @@ const getCountryByName = async function (country) {
     if (!res.ok) throw new Error(`Country not found (${res.status})`);
     // console.log(res);
     const [data] = await res.json();
-    console.log(data);
-    const neighbours = data.borders.splice(0, 2);
-    renderCountryDetails(data, neighbours);
+    // console.log(data);
+    renderCountryDetails(data);
   } catch (error) {
     console.error(error);
     renderError(error.message);
   }
 };
 
-// getCountryByName("sri");
+// getCountryByName("bharat");
 
 // Get country by code
 const getCountryByCode = async function (country) {
@@ -144,34 +136,17 @@ const getCountryByCode = async function (country) {
     const res = await fetch(
       `https://restcountries.eu/rest/v2/alpha/${country}`
     );
-    // console.log(res);
     if (!res.ok) throw new Error(`Country not found (${res.status})`);
     const countryData = await res.json();
-    return countryData.name;
+    console.log(countryData);
+    renderCountryDetails(countryData);
   } catch (error) {
     console.error(error);
     renderError(error.message);
   }
 };
-// const list = [];
-// const getNeighbour = function (alphaCode) {
-//   const name = getCountryByCode(alphaCode).then((data) => console.log(data));
-//   // console.log(name);
-//   return name
-// };
-// getNeighbour("IN");
-// const neighbourArray = ["IND", "US", "GB"];
-// neighbourArray.forEach((n) => getNeighbour(n));
 
-// getCountry("bharat");
-
-// const countriesToDisplay = ["IND", "US", "LK", "GB", "PT", "PK", "SG", "RU"];
-
-// const homePage = function () {
-//   countriesToDisplay.forEach((country) => getCountryByCode(country));
-// };
-
-// homePage();
+// getCountryByCode("RUS");
 
 // Get Countries by Region
 const getCountryByRegion = async function (region) {
@@ -179,12 +154,40 @@ const getCountryByRegion = async function (region) {
     const response = await fetch(
       `https://restcountries.eu/rest/v2/region/${region}`
     );
+    if (!response.ok) throw new Error(`Region not found (${response.status})`);
     const data = await response.json();
     data.forEach((country) => renderCountryArticle(country));
   } catch (error) {
     console.error(error);
   }
 };
+
+const homePage = function () {
+  const homeCountries = [
+    "bharat",
+    "russia",
+    "usa",
+    "uae",
+    "pakistan",
+    "germany",
+    "israel",
+    "canada",
+  ];
+  homeCountries.forEach((c) => renderHomePage(c));
+};
+
+const renderHomePage = async function (country) {
+  try {
+    const res = await fetch(`https://restcountries.eu/rest/v2/name/${country}`);
+    if (!res.ok) throw new Error(`${res.status} Error`);
+    const [data] = await res.json();
+    renderCountryArticle(data);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+homePage();
 
 //? Event Listeners
 //* Select by region
@@ -208,15 +211,24 @@ countryForm.addEventListener("submit", function (e) {
   getCountryByName(name);
   inputCountry.value = "";
   inputCountry.blur();
-  countryForm.classList.add("hidden");
+  // countryForm.classList.add("hidden");
   dropDown.classList.add("hidden");
   backBtn.classList.remove("hidden");
 });
 
 backBtn.addEventListener("click", function () {
   detailsPage.remove();
-  // homePage();
-  countryForm.classList.remove("hidden");
   dropDown.classList.remove("hidden");
   backBtn.classList.add("hidden");
+  homePage();
+});
+// * Click on country
+countriesContainer.addEventListener("click", function (e) {
+  if (!e.target.closest(".country")) return;
+  const country = e.target.closest(".country");
+  console.log(country.dataset.code);
+  getCountryByCode(country.dataset.code);
+  countriesContainer.innerHTML = "";
+  dropDown.classList.add("hidden");
+  backBtn.classList.remove("hidden");
 });

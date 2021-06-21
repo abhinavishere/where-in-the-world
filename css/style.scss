@@ -34,10 +34,6 @@ body {
   min-height: 100vh;
 }
 
-// .header {
-//   max-height: 100vh;
-// }
-
 .nav {
   box-shadow: $bs-shadow-nav-light;
   position: relative;
@@ -45,12 +41,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 2rem 11rem;
+  padding: 2rem;
+
   &__title {
-    font-size: 2rem;
+    font-size: 1.3rem;
   }
   &__toggle {
-    font-weight: 700;
+    font-weight: 300;
     input {
       display: none;
     }
@@ -58,7 +55,7 @@ body {
       display: flex;
       align-items: baseline;
       p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         margin-left: 1rem;
       }
     }
@@ -69,23 +66,23 @@ body {
   background-color: $light-mode-bg;
   min-height: 90vh;
   &__input {
-    padding: 4rem 11rem;
+    padding: 2rem;
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
     justify-content: space-between;
     align-items: flex-start;
   }
   .input {
     &__form {
-      // display: none;
-      // opacity: none;
       width: 100%;
       background-color: $light-mode-nav-bg;
       padding: 1.5rem 2rem;
-      max-width: 467px;
+      max-width: 50rem;
       box-shadow: $bx-shadow-el-light;
       animation: reveal 1s ease-in-out forwards;
       display: flex;
-      // align-items: baseline;
+
       i {
         color: rgba(0, 0, 0, 0.705);
         font-size: $font-size-primary;
@@ -98,16 +95,15 @@ body {
       &::placeholder {
         font-family: $ff-main;
       }
-      // flex-grow: 1;
+      flex-grow: 1;
       width: 90%;
     }
   }
 
   .dropdown {
-    // display: none;
     position: relative;
     z-index: 1;
-    font-weight: 700;
+    font-weight: 300;
     animation: reveal 1s ease-in-out forwards;
     &__name {
       margin-bottom: 1rem;
@@ -165,7 +161,7 @@ body {
     padding: 1.5rem 2rem;
     box-shadow: $bx-shadow-el-light;
     font-size: $font-size-primary;
-    font-weight: 700;
+    font-weight: 300;
     animation: reveal 1s ease-in-out forwards;
     cursor: pointer;
     i {
@@ -176,20 +172,19 @@ body {
 
 // Details Page Styles
 .details {
-  display: grid;
-  grid-template-columns: 45% auto;
-
-  align-items: stretch;
-  padding: 2rem 11rem;
-  gap: 10rem;
+  padding: 2rem;
+  max-width: 470px;
+  margin-inline: auto;
   &__flag {
     animation: reveal 1s ease-in-out forwards;
+    display: flex;
+    align-items: center;
   }
   &__body {
-    padding-block: 2rem;
+    padding-block: 2.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     animation: reveal 1s ease-in-out forwards;
   }
   &__title {
@@ -197,11 +192,16 @@ body {
   }
   &__items {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     font-size: $font-size-primary;
     font-weight: 700;
     line-height: 1.8;
+  }
+  &__info,
+  &__borders {
+    margin-top: 3rem;
   }
   &__param {
     font-weight: 300;
@@ -210,7 +210,7 @@ body {
     font-size: $font-size-primary;
     font-weight: 700;
     &--item {
-      padding: 1rem;
+      padding: 0.7rem 1rem;
       background-color: #ccc;
       margin-inline: 0.5rem;
       font-weight: 300;
@@ -220,23 +220,23 @@ body {
 
 // Countries Article
 .countries {
-  padding: 4rem 10rem;
+  padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  grid-gap: 7rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 4rem;
   justify-items: center;
+  margin-inline: auto;
 }
 
 .country {
   overflow: hidden;
-  // border: 1px solid black;
-  // position: relative;
+  cursor: pointer;
   box-shadow: 0 2px 10px #00000024;
   max-width: 250px;
   display: flex;
   flex-direction: column;
-  // transition: all 250s ease-in-out;
   animation: reveal 1s ease-in-out forwards;
+
   &__img,
   &__desc {
     position: relative;
@@ -248,7 +248,7 @@ body {
   &__desc {
     padding: 3.5rem 3rem;
     color: $light-mode-text;
-    // background-color: #fff;
+    background-color: #fff;
   }
   &__name {
     font-size: 1.7rem;
@@ -267,6 +267,7 @@ body {
   font-size: 2rem;
   text-align: center;
   animation: reveal 1s ease-in-out forwards;
+  font-weight: 300;
 }
 
 @keyframes reveal {
@@ -282,5 +283,55 @@ body {
 
 .hidden {
   display: none;
-  // animation: hide 1s ease-in-out forwards;
+}
+
+//?Media Queries
+@media screen and (min-width: 700px) {
+  .nav {
+    padding: 2rem 11rem;
+    &__title {
+      font-size: 2rem;
+    }
+    &__toggle {
+      p {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .main {
+    &__input {
+      padding: 4rem 11rem;
+      flex-direction: row;
+      max-width: 1200px;
+      margin-inline: auto;
+    }
+
+    .dropdown {
+      font-weight: 700;
+    }
+  }
+  .details {
+    display: grid;
+    grid-template-columns: 45% auto;
+    align-items: stretch;
+    padding: 2rem 11rem;
+    max-width: 1200px;
+    gap: 10rem;
+
+    &__items {
+      flex-direction: row;
+    }
+
+    &__info,
+    &__borders {
+      margin-top: 0;
+    }
+  }
+  .countries {
+    padding: 4rem 10rem;
+    grid-gap: 7rem;
+  }
+  .error__block {
+    font-size: 1rem;
+  }
 }
